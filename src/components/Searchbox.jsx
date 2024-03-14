@@ -16,7 +16,7 @@ const Searchbox = () => {
         <input
           type='search'
           id='default-search'
-          className='block w-full text-sm p-4 ps-10 text-sm text-gray-900 border border-black rounded-lg'
+          className='block w-full  p-4 ps-10 text-sm text-gray-900 border border-black rounded-lg'
           placeholder='Search Food & Reastaurant'
           required
         />
