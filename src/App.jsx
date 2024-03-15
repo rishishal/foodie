@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import { SWIGGY_API } from "./utils/constans";
-import Hero from "./components/Hero";
 import Home from "./page/Home";
 
 function App() {
@@ -24,7 +23,6 @@ function App() {
   return (
     <>
       <Navbar />
-      <Hero />
       <Home Data={swiggyData} />
     </>
   );
