@@ -52,4 +52,12 @@ const RestaurantCard = ({ resData }) => {
     </div>
   );
 };
+
+export const withFlatOffer = (RestaurantCard) => {
+  return (props) => {
+    <label>Falst 50%</label>;
+    <RestaurantCard {...props} />;
+  };
+};
+
 export default RestaurantCard;

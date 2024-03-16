@@ -1,8 +1,6 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { CircleArrowLeft } from "lucide-react";
-import { CircleArrowRight } from "lucide-react";
 import { MEDIA_ASSETS } from "../utils/constans";
 
 const Carousel = ({ links }) => {
@@ -13,8 +11,6 @@ const Carousel = ({ links }) => {
     speed: 500,
     slidesToShow: 7,
     slidesToScroll: 3,
-    nextArrow: <CircleArrowRight />,
-    prevArrow: <CircleArrowLeft />,
     className: "react__slick__slider__parent",
   };
   return (

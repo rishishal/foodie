@@ -1,7 +1,7 @@
 import { ShoppingCart } from "lucide-react";
 import Logo from "../assets/logo.jpg";
 
-const Navbar = () => {
+const Header = () => {
   return (
     <>
       <div className='flex justify-between'>
@@ -25,4 +25,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Header;

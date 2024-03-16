@@ -1,3 +1,10 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,7 +13,14 @@ body {
   font-family: "Raleway", sans-serif;
 }
 
-/* REACT SLICK ARROW CUSTOM CSS */
+/* .slick-prev {
+  left: 3% !important;
+  z-index: 1;
+}
+.slick-next {
+  right: 3% !important;
+  z-index: 1;
+} */
 
 .react__slick__slider__parent {
   position: relative;
@@ -29,5 +43,10 @@ body {
 
 .react__slick__slider__parent .slick-prev:before,
 .slick-next:before {
+  color: black;
+}
+
+.react__slick__slider__parent .slick-next:before,
+.slick-prev:before {
   color: black;
 }
