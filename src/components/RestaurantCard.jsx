@@ -9,6 +9,7 @@ const RestaurantCard = ({ resData }) => {
     cuisines,
     avgRating,
     sla,
+    aggregatedDiscountInfoV3,
   } = resData;
   return (
     <div className='relative flex flex-col mt-6 shadow-xl rounded-xl w-96 mb-9'>
@@ -18,6 +19,17 @@ const RestaurantCard = ({ resData }) => {
           src={Restaurant_IMG + cloudinaryImageId}
           alt='card-image'
         />
+      </div>
+      <div className='absolute -top-5  left-3'>
+        <p className=' font-sans text-xs leading-4	px-1 bg-green-500 text-white font-normal rounded-sm max-w-[100%] mb-0'>
+          {aggregatedDiscountInfoV3?.header
+            ? `${aggregatedDiscountInfoV3.header}${
+                aggregatedDiscountInfoV3.subHeader
+                  ? ` ${aggregatedDiscountInfoV3.subHeader}`
+                  : ""
+              }`
+            : "Flat Rs. 49 OFF"}
+        </p>
       </div>
       <div className='w-[90%] flex justify-between'>
         <div className='ml-5 text-left'>
@@ -51,13 +63,6 @@ const RestaurantCard = ({ resData }) => {
       </div>
     </div>
   );
-};
-
-export const withFlatOffer = (RestaurantCard) => {
-  return (props) => {
-    <label>Falst 50%</label>;
-    <RestaurantCard {...props} />;
-  };
 };
 
 export default RestaurantCard;

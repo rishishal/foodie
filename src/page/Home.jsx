@@ -3,7 +3,7 @@ import { SWIGGY_API } from "../utils/constans";
 import { Link } from "react-router-dom";
 import Carousel from "../components/Carousel";
 import Hero from "../components/Hero";
-import RestaurantCard, { withFlatOffer } from "../components/RestaurantCard";
+import RestaurantCard from "../components/RestaurantCard";
 
 const Home = () => {
   const [Data, setData] = useState(null);
@@ -23,9 +23,8 @@ const Home = () => {
 
   const link = Data?.cards[0]?.card?.card?.imageGridCards.info;
   const restaurants =
-    Data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+    Data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
 
-  const RestaurantCardOffer = withFlatOffer(RestaurantCard);
   return (
     <>
       <Hero />
@@ -41,11 +40,7 @@ const Home = () => {
             key={restaurant.info.id}
             to={"/restaurants/" + restaurant.info.id}
           >
-            {restaurant.info.aggregatedDiscountInfoV3 ? (
-              <RestaurantCardOffer resData={restaurant.info} />
-            ) : (
-              <RestaurantCard resData={restaurant.info} />
-            )}
+            <RestaurantCard resData={restaurant.info} />
           </Link>
         ))}
       </div>

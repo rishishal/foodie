@@ -1,5 +1,8 @@
+import { useParams } from "react-router-dom";
+
 const Menu = () => {
-  return <div>Menu</div>;
+  const { id } = useParams();
+  return <div>Menu: {id}</div>;
 };
 
 export default Menu;
