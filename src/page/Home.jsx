@@ -30,7 +30,7 @@ const Home = () => {
       <Hero />
       <Carousel links={link} />
       <div className='flex justify-between mt-10'>
-        <h1 className=' text-2xl font-bold'>
+        <h1 className=' text-2xl font-bold font-Raleway'>
           {Data?.cards[2].card.card.title}
         </h1>
       </div>

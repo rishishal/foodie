@@ -1,5 +1,7 @@
 import { Restaurant_IMG } from "../utils/constans";
-import { Star, Timer } from "lucide-react";
+
+import { MdOutlineStar } from "react-icons/md";
+import { PiTimerBold } from "react-icons/pi";
 const RestaurantCard = ({ resData }) => {
   const {
     name,
@@ -21,7 +23,7 @@ const RestaurantCard = ({ resData }) => {
         />
       </div>
       <div className='absolute -top-5  left-3'>
-        <p className=' font-sans text-xs leading-4	px-1 bg-green-500 text-white font-normal rounded-sm max-w-[100%] mb-0'>
+        <p className=' font-sans text-xs leading-4 px-1 bg-green-500 text-white font-normal rounded-sm max-w-[100%] mb-0'>
           {aggregatedDiscountInfoV3?.header
             ? `${aggregatedDiscountInfoV3.header}${
                 aggregatedDiscountInfoV3.subHeader
@@ -37,7 +39,7 @@ const RestaurantCard = ({ resData }) => {
         </div>
         <div className=' my-1 flex items-center justify-center w-10 h-5 border-green-600 bg-green-600 text-slate-200 font-normal rounded-md'>
           <p className='m-0.5 font-bold text-xs font-sans'>{avgRating}</p>
-          <Star className='font-bold h-4' />
+          <MdOutlineStar className='font-bold h-4' />
         </div>
       </div>
 
@@ -53,7 +55,7 @@ const RestaurantCard = ({ resData }) => {
             {costForTwo}
           </h5>
           <div className='flex mt-2'>
-            <Timer className='h-3' />
+            <PiTimerBold className='h-4' />
             <p className='text-xs font-medium font-sans pb-3'>
               {sla.deliveryTime}
               min

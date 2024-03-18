@@ -2,7 +2,7 @@ import Searchbox from "./Searchbox";
 
 const Hero = () => {
   return (
-    <div className='flex mt-28'>
+    <div className='flex mt-28 font-Raleway'>
       <div className='text-left'>
         <p className='text-lg font-semibold mb-5'>
           Easy Way to order Your Food

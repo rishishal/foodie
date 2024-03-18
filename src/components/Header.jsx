@@ -1,10 +1,10 @@
-import { ShoppingCart } from "lucide-react";
+import { BsCart2 } from "react-icons/bs";
 import Logo from "../assets/logo.jpg";
 
 const Header = () => {
   return (
     <>
-      <div className='flex justify-between'>
+      <div className='flex justify-between font-Raleway'>
         <div className='w-20 h-10 flex'>
           <img src={Logo} alt='logo' />
           <p className='font-extrabold text-4xl'>Foodie</p>
@@ -15,7 +15,7 @@ const Header = () => {
             <li>Home</li>
             <li>About</li>
             <li>
-              <ShoppingCart />
+              <BsCart2 />
             </li>
             <li>Login</li>
           </ul>
