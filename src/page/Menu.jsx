@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { MENU_API } from "../utils/constans";
-import Accordion from "../components/Accordion";
+import AccordionHeader from "../components/AccordionHeader";
 import { IoTimerSharp } from "react-icons/io5";
 import { TbCoinRupee } from "react-icons/tb";
 import { MdOutlineStar } from "react-icons/md";
@@ -9,6 +9,8 @@ import { MdOutlineStar } from "react-icons/md";
 const Menu = () => {
   const [menu, setMenu] = useState(null);
   const { id } = useParams();
+
+  const [showItem, setShowItem] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -94,7 +96,15 @@ const Menu = () => {
           </div>
         </div>
       </div>
-      <Accordion categories={categories} />
+
+      {categories.map((category, index) => (
+        <AccordionHeader
+          key={category?.card?.card.title}
+          data={category?.card?.card}
+          showItem={index === showItem ? true : false}
+          setShowItem={() => setShowItem(index)}
+        />
+      ))}
     </>
   );
 };
