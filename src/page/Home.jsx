@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Carousel from "../components/Carousel";
 import Hero from "../components/Hero";
 import RestaurantCard from "../components/RestaurantCard";
+import { Shimmer, ShimmerHeading, CircleShimmer } from "../components/Shimmer";
 
 const Home = () => {
   const [Data, setData] = useState(null);
@@ -28,21 +29,33 @@ const Home = () => {
   return (
     <>
       <Hero />
-      <Carousel links={link} />
-      <div className='flex justify-between mt-10'>
-        <h1 className=' text-2xl font-bold font-Raleway'>
-          {Data?.cards[2].card.card.title}
-        </h1>
+      {Data === null ? <CircleShimmer /> : <Carousel links={link} />}
+
+      <div className='mt-10'>
+        {Data === null ? (
+          <ShimmerHeading />
+        ) : (
+          <h1 className=' text-2xl text-left font-bold font-Raleway'>
+            {Data?.cards[2].card.card.title}
+          </h1>
+        )}
       </div>
+
       <div className='flex flex-wrap mt-10'>
-        {restaurants?.map((restaurant) => (
-          <Link
-            key={restaurant.info.id}
-            to={"/restaurants/" + restaurant.info.id}
-          >
-            <RestaurantCard resData={restaurant.info} />
-          </Link>
-        ))}
+        {Data === null ? (
+          <Shimmer />
+        ) : (
+          <>
+            {restaurants?.map((restaurant) => (
+              <Link
+                key={restaurant.info.id}
+                to={"/restaurants/" + restaurant.info.id}
+              >
+                <RestaurantCard resData={restaurant.info} />
+              </Link>
+            ))}
+          </>
+        )}
       </div>
     </>
   );

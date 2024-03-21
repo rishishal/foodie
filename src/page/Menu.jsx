@@ -1,32 +1,24 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { MENU_API } from "../utils/constans";
+import useFetchData from "../utils/useFetchData";
 import AccordionHeader from "../components/AccordionHeader";
 import { IoTimerSharp } from "react-icons/io5";
 import { TbCoinRupee } from "react-icons/tb";
 import { MdOutlineStar } from "react-icons/md";
+import ShimmerList from "../components/ShimmerList";
 
 const Menu = () => {
-  const [menu, setMenu] = useState(null);
   const { id } = useParams();
-
   const [showItem, setShowItem] = useState(0);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch(MENU_API + id);
-        const response = await res.json();
-        setMenu(response?.data);
-      } catch (error) {
-        console.error("Error fetching menu:", error);
-      }
-    };
-    fetchData();
-  }, [id]);
+  const menu = useFetchData(id);
 
   if (!menu) {
-    return <div>Loading...</div>;
+    return (
+      <>
+        <ShimmerList />
+      </>
+    );
   }
 
   const {
