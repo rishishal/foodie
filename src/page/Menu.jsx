@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useFetchData from "../utils/useFetchData";
 import AccordionHeader from "../components/AccordionHeader";
@@ -12,6 +12,10 @@ const Menu = () => {
   const [showItem, setShowItem] = useState(0);
 
   const menu = useFetchData(id);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
   if (!menu) {
     return (
@@ -30,8 +34,10 @@ const Menu = () => {
     feeDetails,
     totalRatingsString,
     sla,
+    // eslint-disable-next-line no-unsafe-optional-chaining
   } = menu?.cards[0]?.card?.card?.info;
 
+  // eslint-disable-next-line no-unsafe-optional-chaining
   const { cards } = menu?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR;
 
   //filtering Itemcategory Data
@@ -94,7 +100,13 @@ const Menu = () => {
           key={category?.card?.card.title}
           data={category?.card?.card}
           showItem={index === showItem ? true : false}
-          setShowItem={() => setShowItem(index)}
+          setShowItem={() => {
+            if (index === showItem) {
+              setShowItem(null);
+            } else {
+              setShowItem(index);
+            }
+          }}
         />
       ))}
     </>

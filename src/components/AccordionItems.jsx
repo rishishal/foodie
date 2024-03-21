@@ -1,8 +1,16 @@
 import { FaRegStopCircle } from "react-icons/fa";
 import { FaRegSquareCaretUp } from "react-icons/fa6";
 import { MEDIA_ASSETS } from "../utils/constans";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/CartSlice";
 
 const AccordionItems = ({ items }) => {
+  const dispatch = useDispatch();
+
+  const handleAdd = (item) => {
+    dispatch(addItem(item));
+  };
+
   return (
     <div>
       {items.map((item) => (
@@ -37,7 +45,10 @@ const AccordionItems = ({ items }) => {
               src={MEDIA_ASSETS + item.card.info.imageId}
               alt='ITEMIMG'
             />
-            <button className='absolute bottom-[10%] left-[22%] py-0.5 px-4 shadow-lg rounded-md text-green-600 bg-white border-green-600 font-medium cursor-pointer'>
+            <button
+              className='absolute bottom-[10%] left-[22%] py-0.5 px-4 shadow-lg rounded-md text-green-600 bg-white border-green-600 font-medium cursor-pointer'
+              onClick={() => handleAdd(item)}
+            >
               ADD
             </button>
           </div>
