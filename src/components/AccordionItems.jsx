@@ -74,7 +74,7 @@ const handleDecrement = (item) => {
               (cartItem) => cartItem.card.info.id === item.card.info.id
             ) ? (
               // If item is in the cart, show inc-dec-counter
-              <div className="inc-dec-count menu-counter">
+              <div className="inc-dec-count menu-counter absolute bottom-[9%] left-[11%] shadow-lg bg-white">
                 <div className="minus-counter" onClick={() => handleDecrement(item)}>-</div>
                 <span>
                   {

@@ -48,3 +48,36 @@
 .slick-prev:before {
   color: black;
 }
+
+
+.inc-dec-count{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 85px;
+  border: 0px solid #d4d5d9;
+  text-align: center;
+  font-weight: 600;
+  color: #60b246;
+  line-height: 30px;
+  height: 31px;
+  user-select: none;
+  box-shadow: 0 3px 8px #e9e9eb;
+border-radius: 4px;
+ }
+
+ .minus-counter{
+  width: 33.33%;
+  font-size: 150%;
+  font-weight: 600;
+  padding-bottom: 3px;
+  color: #BEBFC5;
+  cursor: pointer;
+ }
+
+ .plus-counter{
+  width: 33.33%;
+    font-size: 100%;
+    font-weight: 600;
+    cursor: pointer;
+ }
