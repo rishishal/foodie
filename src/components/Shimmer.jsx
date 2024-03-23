@@ -6,7 +6,7 @@ export const Shimmer = () => {
       {shimmerItems.map((item) => (
         <div
           key={item}
-          className='relative overflow-hidden rounded-md w-96 h-[400px] mr-4 mb-5 bg-gradient-to-r from-[ #ddd] to-[#e8e8e8] animate-pulse'
+          className='relative overflow-hidden rounded-md w-96 h-[400px] mr-4 mb-5 bg-gradient-to-r to-[#e8e8e8] animate-pulse'
         >
           <div className='w-full h-3/4 bg-[#ddd]'></div>
           <div className='p-3'></div>

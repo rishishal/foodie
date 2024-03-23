@@ -49,7 +49,6 @@ const Header = () => {
                 </div>
                 <span className='absolute top-5 w-4 h-4 text-white text-xs rounded-full bg-[#F39A25] font-Mulish'>
                   {cartItems.length}
-                  {console.log(cartItems)}
                 </span>
               </Link>
             </li>

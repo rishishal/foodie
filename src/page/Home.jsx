@@ -41,7 +41,7 @@ const Home = () => {
         )}
       </div>
 
-      <div className='flex flex-wrap mt-10'>
+      <div className='flex justify-center items-center flex-wrap mt-10'>
         {Data === null ? (
           <Shimmer />
         ) : (

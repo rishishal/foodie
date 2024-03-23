@@ -1,15 +1,40 @@
 import { FaRegStopCircle } from "react-icons/fa";
 import { FaRegSquareCaretUp } from "react-icons/fa6";
 import { MEDIA_ASSETS } from "../utils/constans";
-import { useDispatch } from "react-redux";
-import { addItem } from "../utils/CartSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { addItem, decrementQuantity, incrementQuantity } from "../utils/CartSlice";
 
-const AccordionItems = ({ items }) => {
+const AccordionItems = ({ items, resInfo }) => {
   const dispatch = useDispatch();
+  const cartItems = useSelector((store)=> store.cart.items)
+  
 
   const handleAdd = (item) => {
-    dispatch(addItem(item));
+    dispatch(addItem({item, resInfo}));
   };
+
+  
+const handleIncrement = (item) => {
+  const existingItemIndex = cartItems.findIndex(
+    (cartItem) => cartItem.card.info.id === item.card.info.id
+  );
+  if (existingItemIndex !== -1) {
+    // If item already exists in the cart, dispatch the incrementQuantity action
+    dispatch(incrementQuantity(existingItemIndex));
+  }
+};
+
+const handleDecrement = (item) => {
+  const existingItemIndex = cartItems.findIndex(
+    (cartItem) => cartItem.card.info.id === item.card.info.id
+  );
+
+  if (existingItemIndex !== -1) {
+    // If item already exists in the cart, dispatch the decrementQuantity action
+    dispatch(decrementQuantity(existingItemIndex));
+  }
+};
+
 
   return (
     <div>
@@ -45,12 +70,30 @@ const AccordionItems = ({ items }) => {
               src={MEDIA_ASSETS + item.card.info.imageId}
               alt='ITEMIMG'
             />
+            {cartItems.some(
+              (cartItem) => cartItem.card.info.id === item.card.info.id
+            ) ? (
+              // If item is in the cart, show inc-dec-counter
+              <div className="inc-dec-count menu-counter">
+                <div className="minus-counter" onClick={() => handleDecrement(item)}>-</div>
+                <span>
+                  {
+                    cartItems.find(
+                      (cartItem) => cartItem.card.info.id === item.card.info.id
+                    )?.quantity
+                  }
+                </span>
+                <div className="plus-counter" onClick={() => handleIncrement(item)}>+</div></div>
+            ) : (
+
+
             <button
               className='absolute bottom-[10%] left-[22%] py-0.5 px-4 shadow-lg rounded-md text-green-600 bg-white border-green-600 font-medium cursor-pointer'
               onClick={() => handleAdd(item)}
             >
               ADD
             </button>
+                )}
           </div>
         </div>
       ))}

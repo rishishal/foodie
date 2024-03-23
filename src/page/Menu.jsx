@@ -24,6 +24,9 @@ const Menu = () => {
       </>
     );
   }
+ 
+  const resBasicInfo =  menu?.cards[0]?.card?.card?.info;
+  //console.log(resBasicInfo)
 
   const {
     name,
@@ -34,8 +37,7 @@ const Menu = () => {
     feeDetails,
     totalRatingsString,
     sla,
-    // eslint-disable-next-line no-unsafe-optional-chaining
-  } = menu?.cards[0]?.card?.card?.info;
+  } = resBasicInfo
 
   // eslint-disable-next-line no-unsafe-optional-chaining
   const { cards } = menu?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR;
@@ -99,6 +101,7 @@ const Menu = () => {
         <AccordionHeader
           key={category?.card?.card.title}
           data={category?.card?.card}
+          resInfo={resBasicInfo}
           showItem={index === showItem ? true : false}
           setShowItem={() => {
             if (index === showItem) {

@@ -1,8 +1,12 @@
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import AccordionItems from "./AccordionItems";
-const AccordionHeader = ({ data, showItem, setShowItem }) => {
+
+
+
+const AccordionHeader = ({ data, resInfo, showItem, setShowItem }) => {
+ 
   const handleClick = () => {
-    setShowItem(!showItem);
+    setShowItem(showItem);
   };
 
   return (
@@ -21,7 +25,7 @@ const AccordionHeader = ({ data, showItem, setShowItem }) => {
             <IoIosArrowDown className='h-5 w-5' />
           )}
         </div>
-        {showItem && <AccordionItems items={data.itemCards} />}
+        {showItem && <AccordionItems resInfo={resInfo} items={data.itemCards} />}
       </div>
     </div>
   );
