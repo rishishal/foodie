@@ -13,24 +13,21 @@ const Home = () => {
   const { location } = useContext(LocationContext);
   const { setCity } = useContext(CityContext);
 
-  const test = `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${location.latitude}&lng=${location.longitude}` 
-  console.log (test)
 
   useEffect(() => {
     const getData = async () => {
       try {
-        const res = await fetch(test);
+        const res = await fetch( `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${location.latitude}&lng=${location.longitude}` );
         const response = await res.json();
         setData(response?.data);
         setCity(
-          response?.data?.cards[response?.data?.cards.length - 1]?.card?.card?.citySlug?.toUpperCase() || ""
-        );
+          response?.data?.cards[response?.data?.cards.length - 1]?.card?.card?.citySlug?.toUpperCase() || "");
       } catch (error) {
         console.error("Error fetching Swiggy data:", error);
       }
     };
     getData();
-  }, []);
+  }, [location]);
 
   const link = Data?.cards[0]?.card?.card?.imageGridCards.info;
   const restaurants =
@@ -51,7 +48,7 @@ const Home = () => {
         )}
       </div>
 
-      <div className='flex items-center flex-wrap mt-10'>
+      <div className='flex items-center gap-4 flex-wrap mt-10'>
         {Data === null ? (
           <Shimmer />
         ) : (

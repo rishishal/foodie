@@ -42,7 +42,7 @@ const Header = () => {
         </Link>
 
       
-        <div className="w-2/4 flex gap-4 cursor-pointer" onClick={handleLocationNearMe}>
+        <div className="w-2/4 flex gap-3 cursor-pointer" onClick={handleLocationNearMe}>
           <FaLocationArrow className="w-5 h-5 text-[#F39A25]" />
         {nearMe?  <p className="font-extrabold font-Mulish">{city}</p> : <p className="font-extrabold font-Mulish">Select Location</p> }
         </div> 

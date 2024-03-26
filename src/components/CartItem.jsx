@@ -4,7 +4,6 @@ import { FaRegStopCircle } from "react-icons/fa";
 import { FaRegSquareCaretUp } from "react-icons/fa6";
 
 const CartItem = ({items}) => {
-  console.log(items)
 
   const dispatch = useDispatch();
 

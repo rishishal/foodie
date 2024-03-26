@@ -2,7 +2,7 @@ export const Shimmer = () => {
   const shimmerItems = Array.from({ length: 20 }, (_, index) => index + 1);
 
   return (
-    <div className='flex my-5 flex-wrap mt-6'>
+    <div className='flex my-5 gap-2 flex-wrap mt-6'>
       {shimmerItems.map((item) => (
         <div
           key={item}
