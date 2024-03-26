@@ -52,7 +52,7 @@ const Menu = () => {
 
   return (
     <>
-      <div className='flex justify-evenly items-center mt-8 font-Mulish'>
+      <div className='flex justify-evenly items-center mt-10 font-Mulish'>
         <div>
           <h3 className='text-2xl font-bold mb-2 capitalize text-left'>
             {name}

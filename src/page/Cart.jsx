@@ -135,8 +135,8 @@ const Cart = () => {
       </div>
       <div>
         <Link onClick={() => {
-          toast("Please use swiggy or zomato to place your order!!", {
-            icon: '😁',
+          toast("I am working on it!!", {
+            icon: '🙏',
             style: {
               textAlign: "center",
             },

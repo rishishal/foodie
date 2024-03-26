@@ -78,7 +78,7 @@ const Header = () => {
                 <div className="relative">
                   <FaShoppingCart className="h-5 w-5" />
                 </div>
-                <span className="absolute top-5 w-4 h-4 text-white text-xs rounded-full bg-[#F39A25] font-Mulish">
+                <span className="absolute top-7 w-4 h-4 text-white text-xs rounded-full bg-[#F39A25] font-Mulish">
                   {totalQuantity}
                 </span>
               </Link>
