@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import {useSelector, useDispatch} from "react-redux"
 import { Link } from "react-router-dom"
 import { MEDIA_ASSETS } from "../utils/constans";
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import CartItem from "../components/CartItem";
 import { clearCart } from "../utils/CartSlice";
 import { IoTimerSharp } from "react-icons/io5";

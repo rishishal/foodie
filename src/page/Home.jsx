@@ -1,20 +1,30 @@
-import { useEffect, useState } from "react";
-import { SWIGGY_API } from "../utils/constans";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Carousel from "../components/Carousel";
 import Hero from "../components/Hero";
 import RestaurantCard from "../components/RestaurantCard";
 import { Shimmer, ShimmerHeading, CircleShimmer } from "../components/Shimmer";
+import LocationContext from "../utils/LocationContext";
+import CityContext from "../utils/CityContext";
 
 const Home = () => {
   const [Data, setData] = useState(null);
 
+  const { location } = useContext(LocationContext);
+  const { setCity } = useContext(CityContext);
+
+  const test = `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${location.latitude}&lng=${location.longitude}` 
+  console.log (test)
+
   useEffect(() => {
     const getData = async () => {
       try {
-        const res = await fetch(SWIGGY_API);
+        const res = await fetch(test);
         const response = await res.json();
         setData(response?.data);
+        setCity(
+          response?.data?.cards[response?.data?.cards.length - 1]?.card?.card?.citySlug?.toUpperCase() || ""
+        );
       } catch (error) {
         console.error("Error fetching Swiggy data:", error);
       }
