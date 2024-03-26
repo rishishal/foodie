@@ -25,8 +25,8 @@ const Menu = () => {
     );
   }
  
-  const resBasicInfo =  menu?.cards[0]?.card?.card?.info;
-  //console.log(resBasicInfo)
+  const resBasicInfo =  menu?.cards[2]?.card?.card?.info;
+ // console.log(resBasicInfo)
 
   const {
     name,
@@ -40,7 +40,7 @@ const Menu = () => {
   } = resBasicInfo
 
   // eslint-disable-next-line no-unsafe-optional-chaining
-  const { cards } = menu?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR;
+  const { cards } = menu?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR;
 
   //filtering Itemcategory Data
 
