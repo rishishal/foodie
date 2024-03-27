@@ -15,12 +15,6 @@ const Carousel = ({ links }) => {
   };
   return (
     <>
-      <div className='flex justify-between mt-10'>
-        <div>
-          <h1 className='text-2xl font-bold '>Whats on your mind?</h1>
-        </div>
-        <div>Carousel</div>
-      </div>
       <div className='mt-5'>
         <Slider {...settings}>
           {links?.map((bannerImg) => (
