@@ -15,13 +15,13 @@ const Carousel = ({ links }) => {
   };
   return (
     <>
-      <div className='mt-5'>
+      <div className="mt-5">
         <Slider {...settings}>
           {links?.map((bannerImg) => (
             <img
               key={bannerImg?.id}
               src={MEDIA_ASSETS + bannerImg?.imageId}
-              alt='IMG'
+              alt="IMG"
             />
           ))}
         </Slider>

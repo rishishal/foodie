@@ -1,17 +1,17 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Hero from "../components/Hero";
-import LocationContext from "../utils/LocationContext";
-import CityContext from "../utils/CityContext";
-import Noresults from "../assets/no-results.png";
+import { useSelector, useDispatch } from "react-redux";
 import Body from "../components/Body";
 import ShimmerHome from "../components/ShimmerHome";
+import { setCity } from "../utils/LocationSlice";
 
 const Home = () => {
   const [Data, setData] = useState(null);
   const [filteredData, setfilteredData] = useState(null);
 
-  const { location } = useContext(LocationContext);
-  const { setCity } = useContext(CityContext);
+  const dispatch = useDispatch();
+  const location = useSelector((store) => store.location.location);
+  console.log(location);
 
   useEffect(() => {
     const getData = async () => {
@@ -22,10 +22,12 @@ const Home = () => {
         const response = await res.json();
         setData(response?.data);
         setfilteredData(response?.data);
-        setCity(
-          response?.data?.cards[
-            response?.data?.cards.length - 1
-          ]?.card?.card?.citySlug?.toUpperCase() || ""
+        dispatch(
+          setCity(
+            response?.data?.cards[
+              response?.data?.cards.length - 1
+            ]?.card?.card?.citySlug?.toUpperCase() || ""
+          )
         );
       } catch (error) {
         console.error("Error fetching Swiggy data:", error);
@@ -36,13 +38,17 @@ const Home = () => {
 
   const link = Data?.cards[0]?.card?.card?.imageGridCards.info;
   const filterRestaurant =
-  filteredData?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+    filteredData?.cards[1]?.card?.card?.gridElements?.infoWithStyle
       ?.restaurants;
 
   return (
     <>
       <Hero />
-      {Data === null ? <ShimmerHome/>:<Body link={link} filterRestaurant={filterRestaurant} Data={Data}/>}
+      {Data === null ? (
+        <ShimmerHome />
+      ) : (
+        <Body link={link} filterRestaurant={filterRestaurant} Data={Data} />
+      )}
     </>
   );
 };

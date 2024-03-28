@@ -3,28 +3,23 @@ import Logo from "../assets/logo.jpg";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FaLocationArrow } from "react-icons/fa";
-import LocationContext from "../utils/LocationContext";
-import CityContext from "../utils/CityContext";
-import { useContext, useState } from "react";
+import { setLocation } from "../utils/LocationSlice";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 const Header = () => {
   const cartItems = useSelector((store) => store.cart.items);
-
+  const City = useSelector((store) => store.location.city);
+  const dispatch = useDispatch();
   const [nearMe, setNearMe] = useState(false);
-  const { setLocation } = useContext(LocationContext);
-  const { city } = useContext(CityContext);
 
   const handleLocationNearMe = () => {
     navigator.geolocation.getCurrentPosition((position) => {
-      const { latitude, longitude } = position?.coords;
-      setLocation({
-        latitude: latitude,
-        longitude: longitude,
-      });
+      const { latitude, longitude } = position.coords;
+      dispatch(setLocation({ latitude, longitude }));
       setNearMe(true);
     });
   };
-
 
   const totalQuantity = cartItems.reduce(
     (total, item) => total + item.quantity,
@@ -41,12 +36,18 @@ const Header = () => {
           </div>
         </Link>
 
-      
-        <div className="w-2/4 flex gap-3 cursor-pointer" onClick={handleLocationNearMe}>
+        <div
+          className="w-2/4 flex gap-3 cursor-pointer"
+          onClick={handleLocationNearMe}
+        >
           <FaLocationArrow className="w-5 h-5 text-[#F39A25]" />
-        {nearMe?  <p className="font-extrabold font-Mulish">{city}</p> : <p className="font-extrabold font-Mulish">Select Location</p> }
-        </div> 
-        
+          {nearMe ? (
+            <p className="font-extrabold font-Mulish">{City}</p>
+          ) : (
+            <p className="font-extrabold font-Mulish">Select Location</p>
+          )}
+        </div>
+
         <div>
           <ul className="flex gap-6 font-bold text-lg">
             <li>
