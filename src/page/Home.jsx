@@ -7,8 +7,6 @@ import { fetchData } from "../utils/DataSlice";
 
 const Home = () => {
   const Data = useSelector((store) => store.data.data);
-  const filteredData = useSelector((store) => store.data.filteredData);
-
   const dispatch = useDispatch();
   const location = useSelector((store) => store.location.location);
   console.log(location);
@@ -18,18 +16,11 @@ const Home = () => {
   }, [dispatch, location]);
 
   const link = Data?.cards[0]?.card?.card?.imageGridCards.info;
-  const filterRestaurant =
-    filteredData?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-      ?.restaurants;
 
   return (
     <>
       <Hero />
-      {Data === null ? (
-        <ShimmerHome />
-      ) : (
-        <Body link={link} filterRestaurant={filterRestaurant} Data={Data} />
-      )}
+      {Data === null ? <ShimmerHome /> : <Body link={link} Data={Data} />}
     </>
   );
 };

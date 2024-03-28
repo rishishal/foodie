@@ -19,7 +19,12 @@ export const fetchData = createAsyncThunk(
       );
       const response = res.data; // Access response data directly from res.data
       dispatch(setData(response?.data));
-      dispatch(setFilteredData(response?.data));
+      dispatch(
+        setFilteredData(
+          response?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+            ?.restaurants
+        )
+      );
       dispatch(
         setCity(
           response?.data?.cards[
