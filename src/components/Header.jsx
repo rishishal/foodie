@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 
 const Header = () => {
   const cartItems = useSelector((store) => store.cart.items);
-  const City = useSelector((store) => store.location.city);
+  const City = useSelector((store) => store.data.city);
   const dispatch = useDispatch();
   const [nearMe, setNearMe] = useState(false);
 
