@@ -21,8 +21,11 @@ const Body = ({ link, Data }) => {
       </div>
 
       {filteredData.length === 0 ? (
-        <div className="no-results-found">
-          <img src={Noresults} alt="des" />
+        <div className="flex flex-col justify-center items-center mt-12">
+          <h1 className="font-Raleway font-bold text-3xl tracking-widest text-blue-500">
+            Result Not Found
+          </h1>
+          <img className="w-80 h-80" src={Noresults} alt="des" />
         </div>
       ) : (
         <div className="flex items-center gap-4 flex-wrap mt-10">
