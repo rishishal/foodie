@@ -6,11 +6,12 @@ import { setFilteredData } from "../utils/DataSlice";
 const Searchbox = () => {
   const dispatch = useDispatch();
   const Data = useSelector((store) => store.data.data);
+  const filteredData = useSelector((store) => store.data.filteredData);
   const [searchText, setSearchText] = useState("");
 
   const listOfRest =
     Data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-  console.log("list", listOfRest);
+  //console.log("list", listOfRest);
 
   return (
     <form className="max-w-sm">
@@ -39,7 +40,7 @@ const Searchbox = () => {
               dispatch(setFilteredData(listOfRest)); // Assuming Data is your original data
             } else {
               // Filter data based on search text
-              const filterList = listOfRest.filter(
+              const filterList = filteredData.filter(
                 (res) =>
                   res.info.name.toLowerCase().includes(searchTextValue) ||
                   res.info.cuisines.some((cuisine) =>
@@ -53,7 +54,6 @@ const Searchbox = () => {
         <button
           type="button"
           onClick={() => {
-            console.log(searchText);
             setSearchText("");
           }}
           className="text-white absolute end-2.5 bottom-2.5 font-medium rounded-lg text-sm px-4 py-2 bg-black"
