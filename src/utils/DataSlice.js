@@ -7,6 +7,10 @@ export const setFilteredData = (data) => ({
   type: "data/setFilteredData",
   payload: data,
 });
+export const setListofRest = (data) => ({
+  type: "data/setListofRest",
+  payload: data,
+});
 export const setCity = (city) => ({ type: "data/setCity", payload: city });
 
 // Define your thunk
@@ -46,6 +50,7 @@ const dataSlice = createSlice({
   initialState: {
     data: null,
     filteredData: null,
+    listOfRest: [],
     city: "Select Location",
     loading: false,
     error: null,
@@ -56,6 +61,9 @@ const dataSlice = createSlice({
     },
     setFilteredData(state, action) {
       state.filteredData = action.payload;
+    },
+    setListofRest(state, action) {
+      state.listOfRest = action.payload;
     },
     setCity(state, action) {
       state.city = action.payload;

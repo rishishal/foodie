@@ -5,13 +5,9 @@ import { setFilteredData } from "../utils/DataSlice";
 
 const Searchbox = () => {
   const dispatch = useDispatch();
-  const Data = useSelector((store) => store.data.data);
   const filteredData = useSelector((store) => store.data.filteredData);
+  const ListOfRest = useSelector((store) => store.data.listOfRest);
   const [searchText, setSearchText] = useState("");
-
-  const listOfRest =
-    Data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-  //console.log("list", listOfRest);
 
   return (
     <form className="max-w-sm">
@@ -37,7 +33,7 @@ const Searchbox = () => {
 
             if (searchTextValue === "") {
               // If search text is empty, reset filtered data to original data
-              dispatch(setFilteredData(listOfRest)); // Assuming Data is your original data
+              dispatch(setFilteredData(ListOfRest));
             } else {
               // Filter data based on search text
               const filterList = filteredData.filter(
