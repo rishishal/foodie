@@ -2,7 +2,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { useSelector, useDispatch } from "react-redux";
 import { setFilteredData, setListofRest } from "../utils/DataSlice";
 
-const ShowMoreBtn = () => {
+const ShowMoreBtn = ({ setShowBtn }) => {
   const dispatch = useDispatch();
   const Data = useSelector((store) => store.data.data);
   const filteredData = useSelector((store) => store.data.filteredData);
@@ -23,6 +23,7 @@ const ShowMoreBtn = () => {
   const handleMoreData = () => {
     dispatch(setFilteredData([...filteredData, ...additionalRestaurants]));
     dispatch(setListofRest([...filteredData, ...additionalRestaurants]));
+    setShowBtn(false);
   };
 
   return (

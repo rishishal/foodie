@@ -4,8 +4,10 @@ import Carousel from "./Carousel";
 import Noresults from "../assets/no-results.png";
 import { useSelector } from "react-redux";
 import ShowMoreBtn from "./ShowMoreBtn";
+import { useState } from "react";
 
 const Body = ({ link, Data }) => {
+  const [showBtn, setShowBtn] = useState(true);
   const filteredData = useSelector((store) => store.data.filteredData);
   return (
     <>
@@ -40,7 +42,7 @@ const Body = ({ link, Data }) => {
           ))}
         </div>
       )}
-      <ShowMoreBtn />
+      {showBtn && <ShowMoreBtn setShowBtn={setShowBtn} />}
     </>
   );
 };
