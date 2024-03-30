@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
-import { MENU_API } from "./constans";
+import { useSelector } from "react-redux";
 
 const useFetchData = (id) => {
   const [menu, setMenu] = useState(null);
+  const location = useSelector((store) => store.location.location);
 
   const getData = async () => {
     try {
-      const res = await fetch(MENU_API + id);
+      const res = await fetch(
+        `${import.meta.env.VITE_MENU_API}lat=${location.latitude}&lng=${
+          location.longitude
+        }&restaurantId=${id}`
+      );
       const response = await res.json();
       setMenu(response?.data);
     } catch (error) {

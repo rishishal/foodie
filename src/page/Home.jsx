@@ -9,7 +9,7 @@ const Home = () => {
   const Data = useSelector((store) => store.data.data);
   const dispatch = useDispatch();
   const location = useSelector((store) => store.location.location);
-  console.log(location);
+  // console.log(location);
 
   useEffect(() => {
     dispatch(fetchData(location));

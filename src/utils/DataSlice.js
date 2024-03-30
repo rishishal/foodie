@@ -19,7 +19,9 @@ export const fetchData = createAsyncThunk(
   async (location, { dispatch }) => {
     try {
       const res = await axios.get(
-        `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${location.latitude}&lng=${location.longitude}`
+        `${import.meta.env.VITE_SEVER_API}/api/restaurants?lat=${
+          location.latitude
+        }&lng=${location.longitude}&page_type=DESKTOP_WEB_LISTING`
       );
       const response = res.data; // Access response data directly from res.data
       dispatch(setData(response?.data));

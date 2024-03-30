@@ -23,7 +23,7 @@ const Body = ({ link, Data }) => {
         </h1>
       </div>
 
-      {filteredData.length === 0 ? (
+      {filteredData && filteredData.length === 0 ? (
         <div className="flex flex-col justify-center items-center mt-12">
           <h1 className="font-Raleway font-bold text-3xl tracking-widest text-blue-500">
             Result Not Found
@@ -32,14 +32,15 @@ const Body = ({ link, Data }) => {
         </div>
       ) : (
         <div className="flex items-center gap-4 flex-wrap mt-10">
-          {filteredData?.map((restaurant) => (
-            <Link
-              key={restaurant.info.id}
-              to={"/restaurants/" + restaurant.info.id}
-            >
-              <RestaurantCard resData={restaurant.info} />
-            </Link>
-          ))}
+          {filteredData &&
+            filteredData?.map((restaurant) => (
+              <Link
+                key={restaurant.info.id}
+                to={"/restaurants/" + restaurant.info.id}
+              >
+                <RestaurantCard resData={restaurant.info} />
+              </Link>
+            ))}
         </div>
       )}
       {showBtn && <ShowMoreBtn setShowBtn={setShowBtn} />}
