@@ -1,5 +1,4 @@
 import { Restaurant_IMG } from "../utils/constans";
-
 import { MdOutlineStar } from "react-icons/md";
 import { PiTimerBold } from "react-icons/pi";
 
