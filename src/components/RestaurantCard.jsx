@@ -39,7 +39,7 @@ const RestaurantCard = ({ resData }) => {
         </span>
         <span className="px-1 block relative cursor-pointer no-underline">
           <div className="flex justify-between text-sm leading-4">
-            <h4 className="leading-3 font-medium text-left text-base mt-2 mb-1.5 max-w-[80%] text-black">
+            <h4 className="leading-2 font-medium text-left text-base mt-2 mb-1.5 max-w-[80%] text-black">
               {name}
             </h4>
 
