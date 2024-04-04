@@ -31,11 +31,11 @@ const Body = ({ link, Data }) => {
           <img className="w-80 h-80" src={Noresults} alt="des" />
         </div>
       ) : (
-        <div className=" mx-auto md:flex flex-wrap  md:mt-10">
+        <div className=" mx-auto md:flex flex-wrap md:mt-10">
           {filteredData &&
             filteredData?.map((restaurant) => (
               <Link
-                className="w-96 h-[400px] mb-5 ml-4 "
+                className="w-96 h-[400px] mb-5 md:ml-3.5 "
                 key={restaurant.info.id}
                 to={"/restaurants/" + restaurant.info.id}
               >

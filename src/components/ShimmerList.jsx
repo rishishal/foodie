@@ -3,7 +3,7 @@ const ShimmerList = () => {
   return (
     <>
       <div className="flex justify-center items-center mt-16">
-        <div className="flex justify-between gap-10 md:gap-80 bg-gradient-to-r from-[ #ddd] to-[#e8e8e8] animate-pulse">
+        <div className="flex justify-between gap-10 md:gap-96 bg-gradient-to-r from-[ #ddd] to-[#e8e8e8] animate-pulse">
           <div className="max-w-64">
             <div className="h-7 bg-[#ddd] rounded-full w-36 mb-6"></div>
             <div className="h-3 bg-[#ddd] rounded-full max-w-40 mb-2.5"></div>

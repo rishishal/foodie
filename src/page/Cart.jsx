@@ -78,7 +78,7 @@ const Cart = () => {
     </div>
   ) : (
     <div>
-      <h3 className="text-center m-6 text-3xl font-Raleway font-extrabold">
+      <h3 className="text-center mt-8 text-3xl font-Raleway font-extrabold">
         Cart
       </h3>
       <div className="my-5 mx-auto max-w-md rounded-xl border-2 p-4 border-[#F39A25]">
