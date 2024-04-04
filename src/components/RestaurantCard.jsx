@@ -14,7 +14,7 @@ const RestaurantCard = ({ resData }) => {
     aggregatedDiscountInfoV3,
   } = resData;
   return (
-    <div className="w-80 md:w-96 m-auto md:m-0 mb-5 duration-100 font-Mulish shadow-xl rounded-lg">
+    <div className="w-80 md:w-96 m-auto md:m-0  duration-100 font-Mulish shadow-xl rounded-lg">
       <div className="p-3">
         <span className="block relative cursor-pointer no-underline">
           <div className="rounded-lg cursor-pointer relative max-w-full w-96 h-60 overflow-hidden">

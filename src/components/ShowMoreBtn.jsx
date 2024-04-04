@@ -27,10 +27,11 @@ const ShowMoreBtn = ({ setShowBtn }) => {
   };
 
   return (
-    <div className="flex items-center justify-center gap-1 border-2 rounded-xl w-1/6 p-2 shadow-lg m-auto">
-      <button className="font-Mulish font-semibold" onClick={handleMoreData}>
-        Show more
-      </button>
+    <div
+      className="max-w-60 m-auto flex justify-center items-center  border-2 rounded-xl p-2 shadow-lg cursor-pointer"
+      onClick={handleMoreData}
+    >
+      <span className="font-Mulish font-semibold">Show more</span>
       <IoIosArrowDown className="mt-1" />
     </div>
   );

@@ -13,7 +13,7 @@ const ShimmerHome = () => {
 
       <div
         role="status"
-        className="flex flex-wrap bg-gradient-to-r from-[ #ddd] to-[#e8e8e8] animate-pulse mt-10"
+        className="hidden md:flex flex-wrap bg-gradient-to-r from-[ #ddd] to-[#e8e8e8] animate-pulse mt-10"
       >
         {shimmerLinks.map((item) => (
           <div
