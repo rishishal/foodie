@@ -81,3 +81,11 @@
   font-weight: 600;
   cursor: pointer;
 }
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-width: calc(100% - 144px);
+  text-align: left;
+}
