@@ -15,7 +15,7 @@ const Menu = () => {
 
   const {
     data: menuData,
-    error,
+    isError,
     isLoading,
     isSuccess,
   } = useFetchMenuQuery({ location, id });
@@ -47,14 +47,14 @@ const Menu = () => {
 
   const categories = cards?.filter(
     (c) =>
-      c.card?.card?.["@type"] ===
+      c?.card?.card?.["@type"] ===
       "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
   );
 
   return (
     <>
       {isLoading && <ShimmerList />}
-      {error && <h1>Something went wrong...</h1>}
+      {isError && <h1>Something went wrong...</h1>}
       {isSuccess && (
         <div className="max-w-screen-md mt-8 mx-auto pt-8 font-Mulish">
           <div className="flex justify-between mb-3">
@@ -63,10 +63,10 @@ const Menu = () => {
                 {name}
               </h3>
               <p className="text-sm text-left text-gray-600 h-5 overflow-hidden text-ellipsis whitespace-nowrap mb-2">
-                {cuisines.join(", ")}
+                {cuisines?.join(", ")}
               </p>
               <p className="text-sm text-left text-gray-600 h-5 overflow-hidden text-ellipsis whitespace-nowrap mb-2">
-                {areaName}, {sla.lastMileTravelString}
+                {areaName}, {sla?.lastMileTravelString}
               </p>
             </div>
             <div className="w-28 border-2 border-[#e9e9eb] rounded-lg shadow-md p-2 float-right">
@@ -84,14 +84,14 @@ const Menu = () => {
               src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_18,h_18/v1648635511/Delivery_fee_new_cjxumu"
               alt=""
             />
-            <span>{feeDetails.message}</span>
+            <span>{feeDetails?.message}</span>
           </div>
 
           <div className="flex gap-6 mb-4">
             <div className="flex items-center gap-3 text-gray-600 text-sm font-bold">
               <IoTimerSharp className="h-6 w-6" />
               <span>
-                {sla.minDeliveryTime}-{sla.maxDeliveryTime} MINS
+                {sla?.minDeliveryTime}-{sla?.maxDeliveryTime} MINS
               </span>
             </div>
             <div className="flex items-center gap-3 text-gray-600 text-sm font-bold">
@@ -100,9 +100,9 @@ const Menu = () => {
             </div>
           </div>
           <div className="border-t-8 border-[#f1f1f6]"></div>
-          {categories.map((category, index) => (
+          {categories?.map((category, index) => (
             <AccordionHeader
-              key={category?.card?.card.title}
+              key={category?.card?.card?.title}
               data={category?.card?.card}
               resInfo={resBasicInfo}
               showItem={index === showItem ? true : false}

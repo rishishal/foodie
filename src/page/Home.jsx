@@ -12,7 +12,7 @@ const Home = () => {
   // console.log(location);
   const {
     data: responseData,
-    error,
+    isError,
     isLoading,
     isSuccess,
   } = useFetchDataQuery(location);
@@ -35,7 +35,7 @@ const Home = () => {
     <>
       <Hero />
       {isLoading && <ShimmerHome />}
-      {error && <h1>Something went wrong...</h1>}
+      {isError && <h1>Something went wrong...</h1>}
       {isSuccess && <Body link={link} responseData={responseData} />}
     </>
   );
