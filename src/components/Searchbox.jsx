@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { useSelector, useDispatch } from "react-redux";
-import { setFilteredData } from "../utils/DataSlice";
+import { setFilterData } from "../utils/DataSlice";
 
 const Searchbox = () => {
   const dispatch = useDispatch();
-  const filteredData = useSelector((store) => store.data.filteredData);
-  const ListOfRest = useSelector((store) => store.data.listOfRest);
+  const ListOfRest = useSelector((store) => store.data.list);
+  const filterData = useSelector((store) => store.data.filterData);
   const [searchText, setSearchText] = useState("");
 
   return (
@@ -33,17 +33,17 @@ const Searchbox = () => {
 
             if (searchTextValue === "") {
               // If search text is empty, reset filtered data to original data
-              dispatch(setFilteredData(ListOfRest));
+              dispatch(setFilterData(ListOfRest));
             } else {
               // Filter data based on search text
-              const filterList = filteredData.filter(
+              const filterList = filterData.filter(
                 (res) =>
                   res.info.name.toLowerCase().includes(searchTextValue) ||
                   res.info.cuisines.some((cuisine) =>
                     cuisine.toLowerCase().includes(searchTextValue)
                   )
               );
-              dispatch(setFilteredData(filterList)); // Dispatch filtered data
+              dispatch(setFilterData(filterList)); // Dispatch filtered data
             }
           }}
         />

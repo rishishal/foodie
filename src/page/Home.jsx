@@ -1,26 +1,42 @@
 import { useEffect } from "react";
 import Hero from "../components/Hero";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Body from "../components/Body";
 import ShimmerHome from "../components/ShimmerHome";
-import { fetchData } from "../utils/DataSlice";
+import { useFetchDataQuery } from "../utils/apiSlice";
+import { setFilterData, setList } from "../utils/DataSlice";
 
 const Home = () => {
-  const Data = useSelector((store) => store.data.data);
   const dispatch = useDispatch();
   const location = useSelector((store) => store.location.location);
   // console.log(location);
+  const {
+    data: responseData,
+    error,
+    isLoading,
+    isSuccess,
+  } = useFetchDataQuery(location);
 
   useEffect(() => {
-    dispatch(fetchData(location));
-  }, [dispatch, location]);
+    if (responseData) {
+      dispatch(setList(responseData?.data));
+      dispatch(
+        setFilterData(
+          responseData?.data.cards[1]?.card?.card?.gridElements?.infoWithStyle
+            ?.restaurants
+        )
+      );
+    }
+  }, [responseData]);
 
-  const link = Data?.cards[0]?.card?.card?.imageGridCards.info;
+  const link = responseData?.data?.cards[0]?.card?.card?.imageGridCards.info;
 
   return (
     <>
       <Hero />
-      {Data === null ? <ShimmerHome /> : <Body link={link} Data={Data} />}
+      {isLoading && <ShimmerHome />}
+      {error && <h1>Something went wrong...</h1>}
+      {isSuccess && <Body link={link} responseData={responseData} />}
     </>
   );
 };

@@ -1,28 +1,27 @@
 import { IoIosArrowDown } from "react-icons/io";
 import { useSelector, useDispatch } from "react-redux";
-import { setFilteredData, setListofRest } from "../utils/DataSlice";
+import { setFilterData, setList } from "../utils/DataSlice";
 
-const ShowMoreBtn = ({ setShowBtn }) => {
+const ShowMoreBtn = ({ setShowBtn, responseData }) => {
   const dispatch = useDispatch();
-  const Data = useSelector((store) => store.data.data);
-  const filteredData = useSelector((store) => store.data.filteredData);
+  const filterData = useSelector((store) => store.data.filterData);
 
   // Extract unique identifiers from existing objects
   const existingIds = new Set(
-    Data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants.map(
+    responseData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants.map(
       (rest) => rest.info.id
     )
   );
 
   // Filter additional objects based on unique identifiers
   const additionalRestaurants =
-    Data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants.filter(
+    responseData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants.filter(
       (rest) => !existingIds.has(rest.info.id)
     );
 
   const handleMoreData = () => {
-    dispatch(setFilteredData([...filteredData, ...additionalRestaurants]));
-    dispatch(setListofRest([...filteredData, ...additionalRestaurants]));
+    dispatch(setFilterData([...filterData, ...additionalRestaurants]));
+    dispatch(setList([...filterData, ...additionalRestaurants]));
     setShowBtn(false);
   };
 
