@@ -2,8 +2,12 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { MEDIA_ASSETS } from "../utils/constans";
+import { useSelector } from "react-redux";
 
-const Carousel = ({ links }) => {
+const Carousel = () => {
+  const BannerData = useSelector((store) => store?.data?.BannerData?.info);
+  if (BannerData === null) return;
+
   const settings = {
     arrows: true,
     dots: false,
@@ -17,7 +21,7 @@ const Carousel = ({ links }) => {
     <>
       <div className="mt-5">
         <Slider {...settings}>
-          {links?.map((bannerImg) => (
+          {BannerData?.map((bannerImg) => (
             <img
               key={bannerImg?.id}
               src={MEDIA_ASSETS + bannerImg?.imageId}
