@@ -7,6 +7,7 @@ import Home from "./page/Home";
 import About from "./page/About";
 import Menu from "./page/Menu";
 import Cart from "./page/Cart";
+import SearchRestaurants from "./components/SearchRestaurants";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "Cart",
         element: <Cart />,
+      },
+      {
+        path: "/search",
+        element: <SearchRestaurants />,
       },
     ],
   },
