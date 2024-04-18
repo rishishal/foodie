@@ -3,6 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useSearchParams } from "react-router-dom";
 import { addRestaurants, clearRestaurants } from "../utils/searchResSlice";
 import { SEARCH_RES_IMAGE } from "../utils/constans";
+import { useGetSearchRestaurantQuery } from "../utils/SearchApi";
+import { FaArrowRightLong, FaRegSquareCaretUp } from "react-icons/fa6";
+import { IoMdStar } from "react-icons/io";
+import { FaRegStopCircle } from "react-icons/fa";
 
 const SearchRestaurants = () => {
   const [searchParams] = useSearchParams();
@@ -10,33 +14,36 @@ const SearchRestaurants = () => {
   const getSearchRestaurantData = useSelector((store) => store.searchRes);
   const location = useSelector((store) => store.location.location);
 
+  const {
+    data: searchData,
+    isError,
+    isLoading,
+  } = useGetSearchRestaurantQuery({
+    latitude: location.latitude,
+    longitude: location.longitude,
+    query: searchParams.get("query"),
+  });
+  console.log("lat", location.latitude);
+  console.log("lng", location.longitude);
   useEffect(() => {
-    getSearchRestaurant();
+    if (searchData) {
+      dispatch(
+        addRestaurants(
+          searchData?.data?.cards[1]?.groupedCard?.cardGroupMap?.DISH?.cards
+        )
+      );
+    } else {
+      return () => {
+        dispatch(clearRestaurants());
+      };
+    }
+  }, [dispatch, searchData]);
+  //console.log(getSearchRestaurantData);
 
-    return () => {
-      dispatch(clearRestaurants());
-    };
-  }, []);
-
-  const getSearchRestaurant = async () => {
-    const data = await fetch(
-      `https://www.swiggy.com/dapi/restaurants/search/v3?lat=${
-        location.latitude
-      }&lng=${location.longitude}&str= 
-        ${searchParams.get("query")}
-        &trackingId=undefined&submitAction=SUGGESTION&queryUniqueId=bd52aa24-315d-fdcb-661a-6eba3e1ad819&metaData=%7B%22type%22%3A%22DISH%22%2C%22data%22%3A%7B%22vegIdentifier%22%3A%22VEG%22%2C%22cloudinaryId%22%3A%22dyhqamt6bjfjwm4pkbat%22%2C%22dishFamilyId%22%3A%22846627%22%2C%22dishFamilyIds%22%3A%5B%22846627%22%5D%7D%2C%22businessCategory%22%3A%22SWIGGY_FOOD%22%2C%22displayLabel%22%3A%22Dish%22%7D`
-    );
-    const json = await data.json();
-    const restauratsItems =
-      json?.data?.cards[1]?.groupedCard?.cardGroupMap?.DISH?.cards;
-    dispatch(addRestaurants(restauratsItems));
-  };
-
-  console.log(getSearchRestaurantData);
   //   if (getSearchRestaurantData === null) return <ShimmerUI />;
 
   return (
-    <div className="flex flex-col">
+    <div className="mx-auto mt-5 md:flex flex-wrap md:justify-between font-Mulish">
       {getSearchRestaurantData?.map(
         (r, index) =>
           r?.card?.card?.info && (
@@ -44,36 +51,75 @@ const SearchRestaurants = () => {
               to={"/restaurants/" + r?.card?.card?.restaurant?.info?.id}
               key={index}
             >
-              <div className="w-72 md:w-96 h-64 m-auto mt-10 cursor-pointer border shadow-xl rounded-2xl">
-                <div className="">
-                  <h3 className="font-bold text-base">
-                    {r?.card?.card?.restaurant?.info?.name}
-                  </h3>
-                  <img
-                    className=""
-                    src="https://www.reshot.com/preview-assets/icons/STPW6DFVRY/bold-right-arrow-STPW6DFVRY-b83b2.svg"
-                    alt=""
-                  />
-                  <p>{r?.card?.card?.restaurant?.info?.avgRating}</p>
-                  <p>{r?.card?.card?.restaurant?.info?.sla?.slaString}</p>
+              <div className="w-80 mt-10 shadow-xl rounded-2xl">
+                <div className="flex justify-between">
+                  <div className="text-left">
+                    <p className="text-sm font-bold">
+                      {r?.card?.card?.restaurant?.info?.name}
+                    </p>
+                    <div className="flex items-center text-xs">
+                      <span>
+                        <IoMdStar className="w-4 h-4" />
+                      </span>
+                      <span className="mr-2">
+                        {r?.card?.card?.restaurant?.info?.avgRating}
+                      </span>
+                      <span>
+                        {r?.card?.card?.restaurant?.info?.sla?.slaString}
+                      </span>
+                    </div>
+                  </div>
+                  <div>
+                    <FaArrowRightLong />
+                  </div>
                 </div>
+                <div className="mt-1.5 border-b-2	border-dashed"></div>
 
-                <div className=" flex justify-evenly">
-                  <h3 className="font-bold text-base">
-                    {r?.card?.card?.info?.name}
-                  </h3>
+                <div className=" flex justify-between mt-3 mx-2">
+                  <div className="text-left text-sm">
+                    <div className="flex items-center">
+                      {r?.card?.card?.info?.isVeg === 1 ? (
+                        <FaRegStopCircle className="text-green-700 w-4 h-4" />
+                      ) : (
+                        <FaRegSquareCaretUp className="text-red-700 w-4 h-4" />
+                      )}
+                      <div className="flex">
+                        {r.card.card.info.ribbon.text &&
+                        r.card.card.restaurant.info.promoted ? (
+                          <>
+                            <IoMdStar className="w-5 h-5 ml-1 text-yellow-500" />
+                            <p className="text-yellow-500 font-bold">
+                              {r?.card?.card?.info?.ribbon?.text}
+                            </p>
+                          </>
+                        ) : r.card.card.restaurant.info.promoted ? ( //  This comes under bad practice by the way
+                          <p className="ml-1">Promoted</p> // using nested ternary operators
+                        ) : r.card.card.info.ribbon.text ? (
+                          <>
+                            <IoMdStar className="w-5 h-5 ml-1 text-yellow-500" />
+                            <p className="text-yellow-500 font-bold">
+                              {r?.card?.card?.info?.ribbon?.text}
+                            </p>
+                          </>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                    </div>
 
+                    <p className="font-bold">{r?.card?.card?.info?.name}</p>
+                    <p>₹{r?.card?.card?.info?.price / 100}</p>
+                  </div>
                   <img
-                    className="rounded-xl"
+                    className="w-28 h-28 rounded-xl"
                     src={
                       r?.card?.card?.info?.imageId
                         ? SEARCH_RES_IMAGE + r?.card?.card?.info?.imageId
                         : "https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg"
                     }
-                    alt=""
+                    alt="SEARCH_RES_IMAGE"
                   ></img>
                 </div>
-
                 <div className="ml-4 mt-2 h-auto truncate text-ellipsis">
                   <p className="text-sm truncate text-ellipsis">
                     {r.card?.card?.info?.description}

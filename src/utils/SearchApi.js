@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const API_BASE_URL = "https://www.swiggy.com/dapi/restaurants/search/v3";
 
 export const SearchApi = createApi({
-  reducerPath: "api",
+  reducerPath: "SearchApi",
   baseQuery: fetchBaseQuery({ baseUrl: API_BASE_URL }),
   endpoints: (builder) => ({
     getSearchRestaurant: builder.query({

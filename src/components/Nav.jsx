@@ -1,5 +1,6 @@
 import { FaShoppingCart } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
+import Searchbox from "./Searchbox";
 export const Nav = ({ totalQuantity }) => {
   return (
     <div
@@ -55,10 +56,13 @@ export const Nav = ({ totalQuantity }) => {
 export const Navlinks = ({ totalQuantity }) => {
   return (
     <div
-      className="items-center justify-between w-full md:flex md:w-auto md:order-1"
+      className="items-center justify-between w-full md:w-auto md:order-1 md:hidden"
       id="navbar-sticky"
     >
       <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
+        <li className="m-auto">
+          <Searchbox />
+        </li>
         <li>
           <NavLink
             to="/"

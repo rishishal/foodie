@@ -7,6 +7,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Nav, Navlinks } from "./Nav";
 import { Link } from "react-router-dom";
+import Searchbox from "./Searchbox";
+import { FaSearch } from "react-icons/fa";
 
 const Header = () => {
   const cartItems = useSelector((store) => store.cart.items);
@@ -31,16 +33,16 @@ const Header = () => {
   return (
     <nav className="bg-white fixed w-full z-20 top-0 start-0 border-b border-gray-200 md:px-4">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-3">
-        <Link
-          to="/"
-          className="flex items-center space-x-3 rtl:space-x-reverse"
-        >
-          <img src={Logo} className="h-8" alt="Logo" />
-          <span className="self-center whitespace-nowrap font-Raleway font-extrabold text-4xl">
-            Foodie
-          </span>
-        </Link>
-        <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+        <div className="flex">
+          <Link
+            to="/"
+            className="flex items-center space-x-1 rtl:space-x-reverse"
+          >
+            <img src={Logo} className="h-8" alt="Logo" />
+            <span className="self-center whitespace-nowrap font-Raleway font-extrabold text-4xl">
+              Foodie
+            </span>
+          </Link>
           <button
             type="button"
             className="flex gap-1 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center text-black"
@@ -55,15 +57,23 @@ const Header = () => {
               </span>
             )}
           </button>
+        </div>
+        <div className="flex space-x-1 md:space-x-0 rtl:space-x-reverse">
           <button
             data-collapse-toggle="navbar-sticky"
             type="button"
-            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+            className="inline-flex items-center order-4 p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
             aria-controls="navbar-sticky"
             onClick={() => setIsOpen(!isOpen)}
           >
             <IoMenu className="w-6 h-6" />
           </button>
+          <button className="md:hidden">
+            <FaSearch />
+          </button>
+          <div className="hidden md:block">
+            <Searchbox />
+          </div>
         </div>
         <Nav totalQuantity={totalQuantity} />
         {isOpen && <Navlinks totalQuantity={totalQuantity} />}

@@ -1,4 +1,3 @@
-import Searchbox from "./Searchbox";
 import Carousel from "./Carousel";
 
 const Hero = () => {
@@ -18,7 +17,6 @@ const Hero = () => {
             all over the world Search for your Favourite food or resturant in
             your area
           </p>
-          <Searchbox />
         </div>
         <div className="hidden md:block">
           <img

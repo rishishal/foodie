@@ -6,6 +6,7 @@ const initialState = {
   highRatedRestaurants: null,
   pureVegRestaurants: null,
   fastDeliveryRestaurants: null,
+  city: "",
 };
 
 const dataSlice = createSlice({
@@ -27,11 +28,15 @@ const dataSlice = createSlice({
     addFastDeliveryRestaurants: (state, action) => {
       state.fastDeliveryRestaurants = action.payload;
     },
+    setCity: (state, action) => {
+      state.city = action.payload;
+    },
   },
 });
 
 export const {
   setBannerData,
+  setCity,
   setAllRestaurants,
   addHighRatedItems,
   addPureVegRestaurants,

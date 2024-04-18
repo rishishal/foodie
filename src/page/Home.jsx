@@ -10,6 +10,7 @@ import {
   addPureVegRestaurants,
   setAllRestaurants,
   setBannerData,
+  setCity,
 } from "../utils/DataSlice";
 
 const Home = () => {
@@ -33,6 +34,10 @@ const Home = () => {
   const fastDeliveryRestaurant = HighRatedRestaurant?.filter(
     (res) => res?.info?.sla?.deliveryTime < 35
   );
+  const city =
+    responseData?.data?.cards[
+      responseData?.data?.cards.length - 1
+    ]?.card?.card?.citySlug?.toUpperCase() || "";
 
   useEffect(() => {
     if (responseData) {
@@ -47,6 +52,7 @@ const Home = () => {
       dispatch(addHighRatedItems(filteredRestaurant));
       dispatch(addPureVegRestaurants(pureVegRes));
       dispatch(addFastDeliveryRestaurants(fastDeliveryRestaurant));
+      dispatch(setCity(city));
     }
   }, [responseData]);
 

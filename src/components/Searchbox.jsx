@@ -41,7 +41,7 @@ const Searchbox = () => {
   };
 
   return (
-    <form className="max-w-sm">
+    <form className="w-60 md:w-96">
       <label
         htmlFor="default-search"
         className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -62,25 +62,23 @@ const Searchbox = () => {
         />
         {showSuggestions && (
           <div
-            className="absolute z-10 bg-white py-2 px-2 w-[41rem] my-1 rounded-lg shadow-xl border border-gray-100 overflow-y-scroll h-[500px]"
+            className="absolute z-10 md:h-96 md:w-96 bg-white rounded-lg shadow-xl border border-gray-100 overflow-y-scroll"
             onMouseLeave={() => setShowSuggestions(false)}
           >
             <ul>
               {searchCache === null ? (
-                <div className="w-auto mb-4 mt-[114px] ml-[152px]">
+                <div className="flex flex-col">
                   <img
-                    className="ml-30 opacity-35"
+                    className="opacity-35"
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9SL-syk00PytaGYO7A34FpOZANnyui2Jo1-1hJ8PIecV1H80mVF1kjZHxHS2nz-a412k&usqp=CAU"
                     alt=""
                   ></img>
-                  <h1 className=" font-sans text-xl font-bold ml-[65px] opacity-25">
-                    Search Food
-                  </h1>
+                  <h1 className="text-xl font-bold opacity-25">Search Food</h1>
                 </div>
               ) : (
                 searchCache.map((s, index) => (
                   <div
-                    className="flex flex-wrap justify-between w-auto mb-4"
+                    className="flex flex-wrap justify-between w-auto mb-4 mx-2"
                     key={index}
                   >
                     <Link to={"/search?query=" + s?.text}>
