@@ -31,13 +31,18 @@ const Searchbox = () => {
   }, [searchQuery]);
 
   const searchFoodItems = async () => {
-    const data = await fetch(
-      `https://www.swiggy.com/dapi/restaurants/search/suggest?lat=${location.latitude}&lng=${location.longitude}&str=` +
-        searchQuery +
-        "&trackingId=undefined"
-    );
-    const json = await data.json();
-    dispatch(cacheResults(json?.data?.suggestions));
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/suggestion?lat=${location.latitude}&lng=${location.longitude}&searchQuery=${searchQuery}`
+      );
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const json = await response.json();
+      dispatch(cacheResults(json?.data?.suggestions));
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
