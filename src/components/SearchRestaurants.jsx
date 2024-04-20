@@ -23,8 +23,6 @@ const SearchRestaurants = () => {
     longitude: location.longitude,
     query: searchParams.get("query"),
   });
-  console.log("lat", location.latitude);
-  console.log("lng", location.longitude);
   useEffect(() => {
     if (searchData) {
       dispatch(
@@ -38,7 +36,7 @@ const SearchRestaurants = () => {
       };
     }
   }, [dispatch, searchData]);
-  //console.log(getSearchRestaurantData);
+  console.log(getSearchRestaurantData);
 
   //   if (getSearchRestaurantData === null) return <ShimmerUI />;
 

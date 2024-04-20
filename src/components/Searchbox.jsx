@@ -86,7 +86,7 @@ const Searchbox = () => {
                     className="flex flex-wrap justify-between w-auto mb-4 mx-2"
                     key={index}
                   >
-                    <Link to={"/search?query=" + s?.text}>
+                    <Link to={"/search?query=" + s?.text.toLowerCase()}>
                       <li className="font-bold py-2 shadow-sm hover:bg-gray-100 cursor-pointer">
                         {s?.text}
                       </li>
