@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const SearchApi = createApi({
   reducerPath: "SearchApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3000/api",
+    baseUrl: import.meta.env.VITE_SEARCH_QUERY_API,
   }),
   endpoints: (builder) => ({
     getSearchRestaurant: builder.query({

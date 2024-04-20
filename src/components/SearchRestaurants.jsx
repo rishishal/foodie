@@ -36,7 +36,7 @@ const SearchRestaurants = () => {
       };
     }
   }, [dispatch, searchData]);
-  console.log(getSearchRestaurantData);
+  //console.log(getSearchRestaurantData);
 
   //   if (getSearchRestaurantData === null) return <ShimmerUI />;
 
