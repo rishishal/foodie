@@ -33,7 +33,9 @@ const Searchbox = () => {
   const searchFoodItems = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/suggestion?lat=${location.latitude}&lng=${location.longitude}&searchQuery=${searchQuery}`
+        `${import.meta.env.VITE_SUGGESTIONS_API}?lat=${location.latitude}&lng=${
+          location.longitude
+        }&searchQuery=${searchQuery}`
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
